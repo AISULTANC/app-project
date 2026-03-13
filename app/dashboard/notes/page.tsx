@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import NoteEditorModal from "@/components/notes/note-editor-modal";
 import { useNotes, type Note } from "@/components/notes/notes-store";
 import { useSubjects } from "@/components/subjects/subjects-store";
+import NoteAIActions from "@/components/ai/note-ai-actions";
 
 function Badge({ children }: { children: React.ReactNode }) {
   return (
@@ -15,11 +16,12 @@ function Badge({ children }: { children: React.ReactNode }) {
 }
 
 export default function NotesPage() {
-  const { notes, updateNote, deleteNote } = useNotes();
+  const { notes, createNote, updateNote, deleteNote } = useNotes();
   const { getSubjectById, subjects } = useSubjects();
   const [query, setQuery] = useState("");
   const [editorOpen, setEditorOpen] = useState(false);
   const [activeNote, setActiveNote] = useState<Note | undefined>(undefined);
+  const [aiNote, setAiNote] = useState<Note | null>(null);
 
   const subjectNameFor = (subjectId: string) =>
     getSubjectById(subjectId)?.name ?? subjectId;
@@ -79,16 +81,29 @@ export default function NotesPage() {
                       <span>Updated {new Date(n.updatedAt).toLocaleString()}</span>
                     </div>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setActiveNote(n);
-                      setEditorOpen(true);
-                    }}
-                    className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
-                  >
-                    Open
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setAiNote(aiNote?.id === n.id ? null : n)}
+                      className={`rounded-lg border px-3 py-2 text-xs font-semibold transition ${
+                        aiNote?.id === n.id
+                          ? "border-indigo-400 bg-indigo-50 text-indigo-700 dark:border-indigo-500 dark:bg-indigo-500/10 dark:text-indigo-200"
+                          : "border-slate-200 bg-white text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
+                      }`}
+                    >
+                      AI
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setActiveNote(n);
+                        setEditorOpen(true);
+                      }}
+                      className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
+                    >
+                      Open
+                    </button>
+                  </div>
                 </div>
                 <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
                   {n.content
@@ -100,6 +115,18 @@ export default function NotesPage() {
           </div>
         )}
       </section>
+
+      {/* AI Actions for selected note */}
+      {aiNote && (
+        <NoteAIActions
+          noteTitle={aiNote.title}
+          noteContent={aiNote.content}
+          subjectName={subjectNameFor(aiNote.subjectId)}
+          onSaveAsNote={(title, content) => {
+            createNote({ subjectId: aiNote.subjectId, title, content });
+          }}
+        />
+      )}
 
       <NoteEditorModal
         open={editorOpen}

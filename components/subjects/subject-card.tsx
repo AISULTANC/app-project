@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 
 export type SubjectVM = {
   id: string;
@@ -30,8 +31,24 @@ function Badge({ children }: { children: React.ReactNode }) {
 }
 
 export default function SubjectCard({ subject }: { subject: SubjectVM }) {
+  const reducedMotion = useReducedMotion();
+
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-slate-800 dark:bg-slate-950">
+    <motion.div
+      initial={reducedMotion ? false : { opacity: 0, y: 10 }}
+      animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+      transition={reducedMotion ? undefined : { duration: 0.28 }}
+      whileHover={
+        reducedMotion
+          ? undefined
+          : {
+              y: -3,
+              scale: 1.01,
+              boxShadow: "0 12px 30px rgba(15, 23, 42, 0.09)",
+            }
+      }
+      className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950"
+    >
       <div className="flex items-center justify-between gap-3">
         <div className="flex min-w-0 items-center gap-2">
           <ColorDot color={subject.color} />
@@ -58,14 +75,16 @@ export default function SubjectCard({ subject }: { subject: SubjectVM }) {
       </div>
 
       <div className="mt-4">
-        <Link
+        <motion.div whileTap={reducedMotion ? undefined : { scale: 0.98 }}>
+          <Link
           href={`/dashboard/subjects/${subject.id}`}
           className="block w-full rounded-xl bg-indigo-50 px-3 py-2 text-center text-sm font-semibold text-indigo-700 ring-1 ring-indigo-100 hover:bg-indigo-100 dark:bg-indigo-500/10 dark:text-indigo-200 dark:ring-indigo-500/20 dark:hover:bg-indigo-500/15"
         >
           Open workspace
         </Link>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

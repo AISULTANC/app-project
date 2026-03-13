@@ -1,13 +1,24 @@
-"use client";
-
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
-export default function SignupPage() {
+import SignupForm from "@/components/auth/signup-form";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
+
+export default async function SignupPage() {
+  const supabase = await createSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (user) {
+    redirect("/dashboard");
+  }
+
   return (
     <div className="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
       <div className="mx-auto flex min-h-screen max-w-md flex-col px-6 py-10">
         <header className="mb-8 flex items-center gap-2">
-          <div className="grid h-9 w-9 place-items-center rounded-xl bg-slate-900 text-sm font-semibold text-white">
+          <div className="grid h-9 w-9 place-items-center rounded-xl bg-indigo-600 text-sm font-semibold text-white">
             AI
           </div>
           <div className="leading-tight">
@@ -23,29 +34,19 @@ export default function SignupPage() {
             Create your workspace
           </h1>
           <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
-            Authentication is not enabled yet. For now, you can explore the
-            product without an account.
+            Sign up to save subjects, notes, files, and AI activity.
           </p>
 
-          <div className="mt-6 space-y-3">
-            <Link
-              href="/dashboard"
-              className="flex w-full items-center justify-center rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
-            >
-              Go to dashboard
-            </Link>
-            <Link
-              href="/"
-              className="flex w-full items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
-            >
-              Back to landing page
-            </Link>
+          <div className="mt-6">
+            <SignupForm />
           </div>
 
-          <p className="mt-6 text-xs text-slate-500 dark:text-slate-400">
-            When auth comes back, this page will let students sign up with
-            email/password and land in their own dashboard.
-          </p>
+          <Link
+            href="/"
+            className="mt-6 inline-flex w-full items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
+          >
+            Back to landing page
+          </Link>
         </main>
       </div>
     </div>

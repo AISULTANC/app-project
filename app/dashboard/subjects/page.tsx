@@ -1,14 +1,22 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 import AddSubjectModal, {
   type NewSubjectInput,
 } from "@/components/subjects/add-subject-modal";
+import {
+  FadeInSection,
+  MotionButton,
+  StaggerItem,
+  StaggerList,
+} from "@/components/motion/motion-primitives";
 import SubjectCard, { type SubjectVM } from "@/components/subjects/subject-card";
 import { useSubjects } from "@/components/subjects/subjects-store";
 
 export default function SubjectsPage() {
+  const reducedMotion = useReducedMotion();
   const { subjects, createSubject } = useSubjects();
   const [query, setQuery] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
@@ -43,7 +51,7 @@ export default function SubjectsPage() {
   return (
     <>
       {/* Top action bar */}
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-6">
+      <FadeInSection className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex-1">
             <div className="text-xs font-semibold text-slate-700 dark:text-slate-200">
@@ -60,19 +68,22 @@ export default function SubjectsPage() {
           </div>
 
           <div className="sm:pt-5">
-            <button
+            <MotionButton
               type="button"
               onClick={() => setModalOpen(true)}
-              className="w-full rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100 sm:w-auto"
+              className="w-full rounded-xl bg-indigo-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 sm:w-auto"
             >
               Add Subject
-            </button>
+            </MotionButton>
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
       {/* Subjects grid */}
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-6">
+      <FadeInSection
+        className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-6"
+        delay={0.05}
+      >
         <div className="flex items-center justify-between">
           <div>
             <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
@@ -84,19 +95,25 @@ export default function SubjectsPage() {
           </div>
         </div>
 
-        <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <StaggerList className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {filtered.map((s) => (
-            <SubjectCard key={s.id} subject={s} />
+            <StaggerItem key={s.id}>
+              <SubjectCard subject={s} />
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerList>
 
         {filtered.length === 0 ? (
-          <div className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900/30 dark:text-slate-300">
+          <motion.div
+            initial={reducedMotion ? false : { opacity: 0, y: 6 }}
+            animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+            className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900/30 dark:text-slate-300"
+          >
             No subjects match your search. Try a different term or create a new
             subject.
-          </div>
+          </motion.div>
         ) : null}
-      </section>
+      </FadeInSection>
 
       <AddSubjectModal
         open={modalOpen}

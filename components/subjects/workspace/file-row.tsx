@@ -1,3 +1,6 @@
+import { motion, useReducedMotion } from "framer-motion";
+import { MotionButton } from "@/components/motion/motion-primitives";
+
 export type FileVM = {
   id: string;
   name: string;
@@ -40,8 +43,19 @@ export default function FileRow({
   onOpen: () => void;
   onDelete?: () => void;
 }) {
+  const reducedMotion = useReducedMotion();
+
   return (
-    <div className="flex items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950">
+    <motion.div
+      initial={reducedMotion ? false : { opacity: 0, y: 8 }}
+      animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+      whileHover={
+        reducedMotion
+          ? undefined
+          : { y: -2, boxShadow: "0 10px 26px rgba(15, 23, 42, 0.08)" }
+      }
+      className="flex items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950"
+    >
       <div className="min-w-0">
         <div className="truncate text-sm font-semibold text-slate-900 dark:text-slate-100">
           {file.name}
@@ -55,23 +69,23 @@ export default function FileRow({
       </div>
       <div className="flex flex-col items-end gap-2 sm:flex-row sm:items-center">
         {onDelete ? (
-          <button
+          <MotionButton
             type="button"
             onClick={onDelete}
             className="rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-xs font-semibold text-rose-700 hover:bg-rose-100 dark:border-rose-500/30 dark:bg-rose-500/10 dark:text-rose-200 dark:hover:bg-rose-500/15"
           >
             Delete
-          </button>
+          </MotionButton>
         ) : null}
-        <button
+        <MotionButton
           type="button"
           onClick={onOpen}
           className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
         >
           Open file
-        </button>
+        </MotionButton>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

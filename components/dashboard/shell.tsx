@@ -16,7 +16,7 @@ export default function DashboardShell({
         {/* Sidebar */}
         <aside className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:sticky md:top-6 md:h-[calc(100vh-3rem)] md:overflow-auto">
           <div className="flex items-center gap-2 px-2 pb-4">
-            <div className="grid h-10 w-10 place-items-center rounded-xl bg-slate-900 text-sm font-semibold text-white">
+            <div className="grid h-10 w-10 place-items-center rounded-xl bg-indigo-600 text-sm font-semibold text-white">
               AI
             </div>
             <div className="leading-tight">

@@ -27,7 +27,7 @@ export default function NoteCard({
         </div>
         <Link
           href={`/dashboard/subjects/${subjectId}#notes`}
-          className="rounded-lg bg-slate-900 px-3 py-2 text-xs font-semibold text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
+          className="rounded-lg bg-indigo-600 px-3 py-2 text-xs font-semibold text-white hover:bg-indigo-500"
         >
           Open note
         </Link>

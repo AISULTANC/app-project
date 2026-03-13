@@ -7,7 +7,7 @@ export default function Home() {
 
       <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
         <div className="flex items-center gap-2">
-          <div className="grid h-9 w-9 place-items-center rounded-xl bg-slate-900 text-sm font-semibold text-white">
+          <div className="grid h-9 w-9 place-items-center rounded-xl bg-indigo-600 text-sm font-semibold text-white">
             AI
           </div>
           <div className="leading-tight">
@@ -39,7 +39,7 @@ export default function Home() {
           </Link>
           <Link
             href="/signup"
-            className="rounded-lg bg-slate-900 px-3 py-2 text-sm font-medium text-white hover:bg-slate-800 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
+            className="rounded-lg bg-indigo-600 px-3 py-2 text-sm font-medium text-white hover:bg-indigo-500"
           >
             Start free
           </Link>
@@ -237,7 +237,7 @@ export default function Home() {
         </section>
 
         <section id="cta" className="mx-auto w-full max-w-6xl px-6 pb-20">
-          <div className="rounded-3xl bg-slate-900 px-8 py-10 text-white md:px-12">
+          <div className="rounded-3xl bg-indigo-600 px-8 py-10 text-white md:px-12">
             <div className="grid items-center gap-8 md:grid-cols-2">
               <div>
                 <h2 className="text-2xl font-semibold tracking-tight">

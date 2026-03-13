@@ -1,6 +1,12 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
+import {
+  modalBackdropVariants,
+  modalPanelVariants,
+  MotionButton,
+} from "@/components/motion/motion-primitives";
 
 export type SubjectColor = "indigo" | "emerald" | "amber" | "rose";
 
@@ -56,19 +62,29 @@ export default function AddSubjectModal({
     setColor("indigo");
   }, [open]);
 
-  if (!open) return null;
-
   return (
-    <div
-      className="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Add Subject"
-      onMouseDown={(e) => {
-        if (e.target === e.currentTarget) onClose();
-      }}
-    >
-      <div className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-950">
+    <AnimatePresence>
+      {open ? (
+        <motion.div
+          variants={modalBackdropVariants}
+          initial="hidden"
+          animate="visible"
+          exit="exit"
+          className="fixed inset-0 z-50 grid place-items-center bg-black/40 p-4"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Add Subject"
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) onClose();
+          }}
+        >
+      <motion.div
+        variants={modalPanelVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-950"
+      >
         <div className="flex items-start justify-between gap-4 border-b border-slate-200 p-5 dark:border-slate-800">
           <div>
             <div className="text-sm font-semibold">Add Subject</div>
@@ -76,14 +92,14 @@ export default function AddSubjectModal({
               Create a workspace for a class and its study materials.
             </div>
           </div>
-          <button
+          <MotionButton
             type="button"
             onClick={onClose}
             className="rounded-lg px-2 py-1 text-sm text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-900"
             aria-label="Close"
           >
             ✕
-          </button>
+          </MotionButton>
         </div>
 
         <div className="space-y-4 p-5">
@@ -114,7 +130,7 @@ export default function AddSubjectModal({
               {colors.map((c) => {
                 const active = c.key === color;
                 return (
-                  <button
+                  <MotionButton
                     key={c.key}
                     type="button"
                     onClick={() => setColor(c.key)}
@@ -127,7 +143,7 @@ export default function AddSubjectModal({
                   >
                     <span className={`h-2.5 w-2.5 rounded-full ${c.dot}`} />
                     <span>{c.label}</span>
-                  </button>
+                  </MotionButton>
                 );
               })}
             </div>
@@ -135,14 +151,14 @@ export default function AddSubjectModal({
         </div>
 
         <div className="flex items-center justify-end gap-2 border-t border-slate-200 p-5 dark:border-slate-800">
-          <button
+          <MotionButton
             type="button"
             onClick={onClose}
             className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
           >
             Cancel
-          </button>
-          <button
+          </MotionButton>
+          <MotionButton
             type="button"
             disabled={!canSave}
             onClick={() => {
@@ -150,13 +166,15 @@ export default function AddSubjectModal({
               onCreate({ name: name.trim(), description: description.trim(), color });
               onClose();
             }}
-            className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
+            className="rounded-xl bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-500 disabled:cursor-not-allowed disabled:opacity-50"
           >
             Add Subject
-          </button>
+          </MotionButton>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
+      ) : null}
+    </AnimatePresence>
   );
 }
 

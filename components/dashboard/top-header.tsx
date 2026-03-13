@@ -3,10 +3,14 @@ import ThemeToggle from "@/components/theme-toggle";
 export default function DashboardTopHeader({
   title,
   subtitle,
+  displayName,
 }: {
   title: string;
   subtitle?: string;
+  displayName: string;
 }) {
+  const initial = displayName.trim().charAt(0).toUpperCase() || "S";
+
   return (
     <header className="rounded-2xl border border-slate-200 bg-white px-4 py-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:px-6">
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
@@ -27,8 +31,12 @@ export default function DashboardTopHeader({
             <span className="truncate">Search subjects, notes, files…</span>
           </div>
           <ThemeToggle />
+          <div className="hidden text-right md:block">
+            <div className="text-xs text-slate-500 dark:text-slate-400">Signed in as</div>
+            <div className="max-w-[180px] truncate text-sm font-medium">{displayName}</div>
+          </div>
           <div className="grid h-10 w-10 place-items-center rounded-full bg-indigo-600 text-sm font-semibold text-white">
-            S
+            {initial}
           </div>
         </div>
       </div>

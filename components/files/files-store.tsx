@@ -11,6 +11,7 @@ export type WorkspaceFile = {
   type: string;
   size: number;
   uploadedAt: string; // ISO
+  textContent?: string; // extracted text for AI actions (txt files, future: PDF/DOCX)
 };
 
 type FilesContextValue = {

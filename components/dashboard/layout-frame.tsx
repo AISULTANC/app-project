@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
 import DashboardSidebar from "@/components/dashboard/sidebar";
@@ -50,10 +51,15 @@ function headerForPath(pathname: string) {
 
 export default function DashboardLayoutFrame({
   children,
+  displayName,
+  email,
 }: {
   children: React.ReactNode;
+  displayName: string;
+  email: string;
 }) {
   const pathname = usePathname() ?? "";
+  const reducedMotion = useReducedMotion();
   const header = headerForPath(pathname);
 
   return (
@@ -72,7 +78,7 @@ export default function DashboardLayoutFrame({
             </div>
           </div>
 
-          <DashboardSidebar />
+          <DashboardSidebar email={email} />
 
           <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900/30">
             <div className="text-xs font-semibold text-slate-900 dark:text-slate-100">
@@ -86,8 +92,26 @@ export default function DashboardLayoutFrame({
         </aside>
 
         <div className="space-y-6">
-          <DashboardTopHeader title={header.title} subtitle={header.subtitle} />
-          {children}
+          <DashboardTopHeader
+            title={header.title}
+            subtitle={header.subtitle}
+            displayName={displayName}
+          />
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={pathname}
+              initial={reducedMotion ? false : { opacity: 0, y: 10 }}
+              animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
+              exit={reducedMotion ? undefined : { opacity: 0, y: -6 }}
+              transition={
+                reducedMotion
+                  ? undefined
+                  : { duration: 0.24, ease: [0.22, 1, 0.36, 1] }
+              }
+            >
+              {children}
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </div>

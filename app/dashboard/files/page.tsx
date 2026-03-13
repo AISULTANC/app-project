@@ -2,14 +2,21 @@
 
 import { useMemo, useState } from "react";
 
-import { useFiles } from "@/components/files/files-store";
+import { useFiles, type WorkspaceFile } from "@/components/files/files-store";
+import { useNotes } from "@/components/notes/notes-store";
 import FileRow, { type FileVM } from "@/components/subjects/workspace/file-row";
 import { useSubjects } from "@/components/subjects/subjects-store";
+import FileAIActions from "@/components/ai/file-ai-actions";
 
 export default function FilesPage() {
   const { files, deleteFile } = useFiles();
+  const { createNote } = useNotes();
   const { getSubjectById } = useSubjects();
   const [query, setQuery] = useState("");
+  const [aiFile, setAiFile] = useState<WorkspaceFile | null>(null);
+
+  const subjectNameFor = (subjectId: string) =>
+    getSubjectById(subjectId)?.name ?? subjectId;
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -40,7 +47,7 @@ export default function FilesPage() {
               All files
             </h2>
             <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
-              Files across all subjects (metadata only for now).
+              Files across all subjects. Click &quot;AI&quot; to run AI actions on a file.
             </p>
           </div>
           <div className="w-full sm:w-[360px]">
@@ -63,16 +70,52 @@ export default function FilesPage() {
           </div>
         ) : (
           <div className="mt-5 space-y-3">
-            {viewModels.map((vm) => (
-              <FileRow
-                key={vm.id}
-                file={vm}
-                onOpen={() => {
-                  // frontend-only MVP: no real viewer yet
-                }}
-                onDelete={() => deleteFile(vm.id)}
-              />
-            ))}
+            {filtered.map((f) => {
+              const vm: FileVM = {
+                id: f.id,
+                name: f.name,
+                typeLabel: f.type || "unknown/type",
+                sizeBytes: f.size,
+                uploadedAt: new Date(f.uploadedAt).toLocaleString(),
+                subjectName: subjectNameFor(f.subjectId),
+              };
+              return (
+                <div key={f.id}>
+                  <div className="flex items-center gap-2">
+                    <div className="flex-1">
+                      <FileRow
+                        file={vm}
+                        onOpen={() => setAiFile(aiFile?.id === f.id ? null : f)}
+                        onDelete={() => deleteFile(f.id)}
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setAiFile(aiFile?.id === f.id ? null : f)}
+                      className={`rounded-lg border px-3 py-2 text-xs font-semibold transition ${
+                        aiFile?.id === f.id
+                          ? "border-indigo-400 bg-indigo-50 text-indigo-700 dark:border-indigo-500 dark:bg-indigo-500/10 dark:text-indigo-200"
+                          : "border-slate-200 bg-white text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
+                      }`}
+                    >
+                      AI
+                    </button>
+                  </div>
+                  {aiFile?.id === f.id && (
+                    <div className="mt-3">
+                      <FileAIActions
+                        fileName={f.name}
+                        fileContent={f.textContent || ""}
+                        subjectName={subjectNameFor(f.subjectId)}
+                        onSaveAsNote={(title, content) => {
+                          createNote({ subjectId: f.subjectId, title, content });
+                        }}
+                      />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         )}
       </section>

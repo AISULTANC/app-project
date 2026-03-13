@@ -1,13 +1,16 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
 export default function ThemeToggle() {
-  const { theme, resolvedTheme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const reducedMotion = useReducedMotion();
 
   useEffect(() => setMounted(true), []);
+
   if (!mounted) {
     return (
       <button
@@ -17,21 +20,22 @@ export default function ThemeToggle() {
     );
   }
 
-  const currentTheme = (theme === "system" ? resolvedTheme : theme) ?? "light";
-  const isDark = currentTheme === "dark";
+  const isDark = resolvedTheme === "dark";
 
   return (
-    <button
+    <motion.button
       type="button"
       aria-label="Toggle theme"
       onClick={() => setTheme(isDark ? "light" : "dark")}
+      whileHover={reducedMotion ? undefined : { y: -1, scale: 1.02 }}
+      whileTap={reducedMotion ? undefined : { scale: 0.97 }}
       className="inline-flex h-10 items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100 dark:hover:bg-slate-800"
     >
       {isDark ? (
         <svg
           aria-hidden="true"
           viewBox="0 0 24 24"
-          className="h-4 w-4 text-slate-100"
+          className="h-4 w-4"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -42,7 +46,7 @@ export default function ThemeToggle() {
         <svg
           aria-hidden="true"
           viewBox="0 0 24 24"
-          className="h-4 w-4 text-slate-900"
+          className="h-4 w-4"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -52,7 +56,7 @@ export default function ThemeToggle() {
         </svg>
       )}
       <span className="hidden sm:inline">{isDark ? "Dark" : "Light"}</span>
-    </button>
+    </motion.button>
   );
 }
 

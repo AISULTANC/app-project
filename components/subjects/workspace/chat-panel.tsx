@@ -12,7 +12,7 @@ function Bubble({ role, content }: { role: Message["role"]; content: string }) {
         className={[
           "max-w-[85%] whitespace-pre-wrap rounded-2xl px-3 py-2 text-sm leading-6 shadow-sm",
           isUser
-            ? "bg-slate-900 text-white dark:bg-white dark:text-slate-900"
+            ? "bg-indigo-600 text-white"
             : "bg-slate-50 text-slate-800 ring-1 ring-slate-200 dark:bg-slate-900/30 dark:text-slate-100 dark:ring-slate-800",
         ].join(" ")}
       >

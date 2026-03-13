@@ -3,7 +3,6 @@
 import { useParams } from "next/navigation";
 import { useMemo, useState } from "react";
 
-import SubjectChatPanel from "@/components/subjects/workspace/chat-panel";
 import FileRow from "@/components/subjects/workspace/file-row";
 import SectionTabs, {
   type WorkspaceTab,
@@ -12,12 +11,11 @@ import SubjectHeader from "@/components/subjects/workspace/subject-header";
 import NoteEditorModal from "@/components/notes/note-editor-modal";
 import { useNotes, type Note } from "@/components/notes/notes-store";
 import { useSubjects } from "@/components/subjects/subjects-store";
-import { useFiles } from "@/components/files/files-store";
+import { useFiles, type WorkspaceFile } from "@/components/files/files-store";
 import UploadFileModal from "@/components/files/upload-file-modal";
-import AISelectedPanel, {
-  type SelectedSource,
-} from "@/components/subjects/workspace/ai-selected-panel";
-import SubjectAIPanel from "@/components/subjects/workspace/subject-ai-panel";
+import NoteAIActions from "@/components/ai/note-ai-actions";
+import FileAIActions from "@/components/ai/file-ai-actions";
+import AIChatPanel from "@/components/ai/ai-chat-panel";
 
 function titleCaseFromSlug(slug: string) {
   return slug
@@ -48,7 +46,8 @@ export default function SubjectWorkspacePage() {
   const [editorMode, setEditorMode] = useState<"create" | "edit">("create");
   const [activeNote, setActiveNote] = useState<Note | undefined>(undefined);
   const [uploadOpen, setUploadOpen] = useState(false);
-  const [selectedSource, setSelectedSource] = useState<SelectedSource>(null);
+  const [selectedNote, setSelectedNote] = useState<Note | null>(null);
+  const [selectedFile, setSelectedFile] = useState<WorkspaceFile | null>(null);
 
   const notes = useMemo(
     () => (subjectId ? getNotesBySubjectId(subjectId) : []),
@@ -104,10 +103,10 @@ export default function SubjectWorkspacePage() {
                 {notes.map((n) => (
                   <div
                     key={n.id}
-                    onClick={() => setSelectedSource({ kind: "note", note: n })}
+                    onClick={() => { setSelectedNote(n); setSelectedFile(null); }}
                     className={[
                       "cursor-pointer rounded-2xl border bg-white p-4 shadow-sm dark:bg-slate-950",
-                      selectedSource?.kind === "note" && selectedSource.note.id === n.id
+                      selectedNote?.id === n.id
                         ? "border-indigo-400 ring-2 ring-indigo-200 dark:border-indigo-500 dark:ring-indigo-500/40"
                         : "border-slate-200 dark:border-slate-800",
                     ].join(" ")}
@@ -190,7 +189,8 @@ export default function SubjectWorkspacePage() {
                       uploadedAt: new Date(f.uploadedAt).toLocaleString(),
                     }}
                     onOpen={() => {
-                      setSelectedSource({ kind: "file", file: f });
+                      setSelectedFile(f);
+                      setSelectedNote(null);
                     }}
                     onDelete={() => deleteFile(f.id)}
                   />
@@ -201,7 +201,7 @@ export default function SubjectWorkspacePage() {
         ) : null}
       </div>
     );
-  }, [files, notes, showFiles, showNotes, deleteNote, deleteFile]);
+  }, [files, notes, showFiles, showNotes, deleteNote, deleteFile, selectedNote]);
 
   return (
     <>
@@ -246,8 +246,63 @@ export default function SubjectWorkspacePage() {
 
         {showRight ? (
           <div className="space-y-6">
-            <SubjectAIPanel subjectName={meta.name} selected={selectedSource} />
-            <SubjectChatPanel subjectName={meta.name} />
+            {/* AI Actions for selected note */}
+            {selectedNote && (
+              <NoteAIActions
+                noteTitle={selectedNote.title}
+                noteContent={selectedNote.content}
+                subjectName={meta.name}
+                onSaveAsNote={(title, content) => {
+                  if (!subject) return;
+                  createNote({ subjectId: subject.id, title, content });
+                }}
+              />
+            )}
+
+            {/* AI Actions for selected file */}
+            {selectedFile && (
+              <FileAIActions
+                fileName={selectedFile.name}
+                fileContent={selectedFile.textContent || ""}
+                subjectName={meta.name}
+                onSaveAsNote={(title, content) => {
+                  if (!subject) return;
+                  createNote({ subjectId: subject.id, title, content });
+                }}
+              />
+            )}
+
+            {/* Empty state when nothing selected */}
+            {!selectedNote && !selectedFile && (
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-950">
+                <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                  AI Actions
+                </h3>
+                <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">
+                  Select a note or file on the left to run AI actions like
+                  summarize, generate quiz, create flashcards, and more.
+                </p>
+              </div>
+            )}
+
+            {/* Subject Chat */}
+            <AIChatPanel
+              subjectName={meta.name}
+              subjectDescription={meta.description}
+              context={
+                selectedNote
+                  ? {
+                      noteTitle: selectedNote.title,
+                      noteContent: selectedNote.content,
+                    }
+                  : selectedFile
+                    ? {
+                        fileName: selectedFile.name,
+                        fileContent: selectedFile.textContent || "",
+                      }
+                    : undefined
+              }
+            />
           </div>
         ) : null}
       </div>
@@ -280,15 +335,15 @@ export default function SubjectWorkspacePage() {
       <UploadFileModal
         open={uploadOpen}
         onClose={() => setUploadOpen(false)}
-        onSelectFile={(file) => {
+        onSelectFile={(file, textContent) => {
           if (!subject) return;
           addFile({
             subjectId: subject.id,
             name: file.name,
             type: file.type || "unknown/type",
             size: file.size,
+            textContent,
           });
-          // counts are also synced in FilesProvider, but keep immediate UI snappy
           updateSubject(subject.id, { filesCount: (subject.filesCount ?? 0) + 1 });
         }}
       />
