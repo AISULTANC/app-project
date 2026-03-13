@@ -105,7 +105,7 @@ function SidebarLink({
 export default function DashboardSidebar({
   email,
 }: {
-  email: string;
+  email?: string;
 }) {
   const pathname = usePathname() ?? "";
 
@@ -125,7 +125,7 @@ export default function DashboardSidebar({
       <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 dark:border-slate-800 dark:bg-slate-900/30">
         <div className="text-xs text-slate-500 dark:text-slate-400">Account</div>
         <div className="mt-1 truncate text-sm font-medium text-slate-800 dark:text-slate-100">
-          {email}
+          {email ?? "Signed in"}
         </div>
         <div className="mt-3 flex items-center gap-2">
           <Link
