@@ -70,13 +70,13 @@ export default function SubjectWorkspacePage() {
     return (
       <div className="space-y-6" id="notes">
         {showNotes ? (
-          <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-6">
+          <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-[#1f1f1f] dark:bg-black md:p-6">
             <div className="flex items-center justify-between gap-3">
               <div>
-                <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                <h2 className="text-sm font-semibold text-slate-900 dark:text-white">
                   Notes
                 </h2>
-                <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+                <p className="mt-1 text-sm text-slate-600 dark:text-[#a1a1a1]">
                   Keep ideas, examples, and study plans in one place.
                 </p>
               </div>
@@ -94,7 +94,7 @@ export default function SubjectWorkspacePage() {
             </div>
 
             {notes.length === 0 ? (
-              <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900/30 dark:text-slate-300">
+              <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-sm text-slate-600 dark:border-[#1f1f1f] dark:bg-slate-900/30 dark:text-[#a1a1a1]">
                 No notes yet. Add your first note to start building a study
                 trail for this subject.
               </div>
@@ -105,15 +105,15 @@ export default function SubjectWorkspacePage() {
                     key={n.id}
                     onClick={() => { setSelectedNote(n); setSelectedFile(null); }}
                     className={[
-                      "cursor-pointer rounded-2xl border bg-white p-4 shadow-sm dark:bg-slate-950",
+                      "cursor-pointer rounded-2xl border bg-white p-4 shadow-sm dark:bg-black",
                       selectedNote?.id === n.id
                         ? "border-indigo-400 ring-2 ring-indigo-200 dark:border-indigo-500 dark:ring-indigo-500/40"
-                        : "border-slate-200 dark:border-slate-800",
+                        : "border-slate-200 dark:border-[#1f1f1f]",
                     ].join(" ")}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
-                        <div className="truncate text-sm font-semibold text-slate-900 dark:text-slate-100">
+                        <div className="truncate text-sm font-semibold text-slate-900 dark:text-white">
                           {n.title}
                         </div>
                         <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">
@@ -128,7 +128,7 @@ export default function SubjectWorkspacePage() {
                             setActiveNote(n);
                             setEditorOpen(true);
                           }}
-                          className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
+                          className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-900 hover:bg-slate-50 dark:border-[#1f1f1f] dark:bg-black dark:text-white dark:hover:bg-slate-900"
                         >
                           Open
                         </button>
@@ -141,7 +141,7 @@ export default function SubjectWorkspacePage() {
                         </button>
                       </div>
                     </div>
-                    <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                    <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-600 dark:text-[#a1a1a1]">
                       {n.content ? n.content.slice(0, 140) + (n.content.length > 140 ? "…" : "") : "No content yet."}
                     </p>
                   </div>
@@ -152,27 +152,27 @@ export default function SubjectWorkspacePage() {
         ) : null}
 
         {showFiles ? (
-          <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-6">
+          <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-[#1f1f1f] dark:bg-black md:p-6">
             <div className="flex items-center justify-between gap-3">
               <div>
-                <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                <h2 className="text-sm font-semibold text-slate-900 dark:text-white">
                   Files
                 </h2>
-                <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+                <p className="mt-1 text-sm text-slate-600 dark:text-[#a1a1a1]">
                   Upload lecture materials and reference documents.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setUploadOpen(true)}
-                className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
+                className="rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-[#1f1f1f] dark:bg-black dark:text-white dark:hover:bg-slate-900"
               >
                 Upload
               </button>
             </div>
 
             {files.length === 0 ? (
-              <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900/30 dark:text-slate-300">
+              <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-sm text-slate-600 dark:border-[#1f1f1f] dark:bg-slate-900/30 dark:text-[#a1a1a1]">
                 No files yet. Upload a lecture or document to keep your study
                 materials together.
               </div>
@@ -220,11 +220,11 @@ export default function SubjectWorkspacePage() {
           onUploadFile={() => setUploadOpen(true)}
         />
       ) : (
-        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950">
-          <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+        <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-[#1f1f1f] dark:bg-black">
+          <div className="text-sm font-semibold text-slate-900 dark:text-white">
             Subject not found
           </div>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
+          <p className="mt-2 text-sm text-slate-600 dark:text-[#a1a1a1]">
             This workspace doesn’t exist yet. Create a subject first, then open
             its workspace from the Subjects page.
           </p>
@@ -274,8 +274,8 @@ export default function SubjectWorkspacePage() {
 
             {/* Empty state when nothing selected */}
             {!selectedNote && !selectedFile && (
-              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-950">
-                <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+              <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-[#1f1f1f] dark:bg-black">
+                <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
                   AI Actions
                 </h3>
                 <p className="mt-2 text-sm text-slate-500 dark:text-slate-400">

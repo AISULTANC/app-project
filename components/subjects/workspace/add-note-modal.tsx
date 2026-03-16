@@ -45,18 +45,18 @@ export default function AddNoteModal({
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      <div className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-950">
-        <div className="flex items-start justify-between gap-4 border-b border-slate-200 p-5 dark:border-slate-800">
+      <div className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-[#1f1f1f] dark:bg-[#111111]">
+        <div className="flex items-start justify-between gap-4 border-b border-slate-200 p-5 dark:border-[#1f1f1f]">
           <div>
             <div className="text-sm font-semibold">Add Note</div>
-            <div className="mt-1 text-sm text-slate-600 dark:text-slate-300">
-              Capture key points while they’re fresh.
+            <div className="mt-1 text-sm text-slate-600 dark:text-[#a1a1a1]">
+              Capture key points while they're fresh.
             </div>
           </div>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg px-2 py-1 text-sm text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-900"
+            className="rounded-lg px-2 py-1 text-sm text-slate-600 hover:bg-slate-100 dark:text-white dark:hover:bg-[#0a0a0a]"
             aria-label="Close"
           >
             ✕
@@ -65,19 +65,19 @@ export default function AddNoteModal({
 
         <div className="space-y-4 p-5">
           <div className="space-y-2">
-            <div className="text-xs font-semibold text-slate-700 dark:text-slate-200">
+            <div className="text-xs font-semibold text-slate-700 dark:text-white">
               Title
             </div>
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               placeholder="e.g. Chain Rule examples"
-              className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-slate-600"
+              className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 dark:border-[#1f1f1f] dark:bg-[#0a0a0a] dark:text-white dark:focus:border-[#3b82f6]"
             />
           </div>
 
           <div className="space-y-2">
-            <div className="text-xs font-semibold text-slate-700 dark:text-slate-200">
+            <div className="text-xs font-semibold text-slate-700 dark:text-white">
               Content
             </div>
             <textarea
@@ -85,16 +85,16 @@ export default function AddNoteModal({
               onChange={(e) => setContent(e.target.value)}
               placeholder="Write a quick summary or paste key points…"
               rows={6}
-              className="w-full resize-none rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-slate-600"
+              className="w-full resize-none rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 dark:border-[#1f1f1f] dark:bg-[#0a0a0a] dark:text-white dark:focus:border-[#3b82f6]"
             />
           </div>
         </div>
 
-        <div className="flex items-center justify-end gap-2 border-t border-slate-200 p-5 dark:border-slate-800">
+        <div className="flex items-center justify-end gap-2 border-t border-slate-200 p-5 dark:border-[#1f1f1f]">
           <button
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
+            className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-[#1f1f1f] dark:bg-[#111111] dark:text-white dark:hover:bg-[#0a0a0a]"
           >
             Cancel
           </button>

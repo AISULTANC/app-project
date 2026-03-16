@@ -47,7 +47,7 @@ const recentFiles: RecentFile[] = [
 
 function Badge({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700 dark:bg-slate-800 dark:text-slate-200">
+    <span className="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-xs font-medium text-slate-700 dark:bg-[#1f1f1f] dark:text-[#a1a1a1]">
       {children}
     </span>
   );
@@ -71,13 +71,13 @@ export default function DashboardPage() {
   return (
     <>
       {/* Subject cards */}
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-6">
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-[#1f1f1f] dark:bg-black md:p-6">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                <h2 className="text-sm font-semibold text-slate-900 dark:text-white">
                   Your subjects
                 </h2>
-                <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+                <p className="mt-1 text-sm text-slate-600 dark:text-[#a1a1a1]">
                   Jump back into a class workspace.
                 </p>
               </div>
@@ -93,14 +93,14 @@ export default function DashboardPage() {
               {subjects.map((s) => (
                 <div
                   key={s.id}
-                  className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-slate-800 dark:bg-slate-950"
+                  className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md dark:border-[#1f1f1f] dark:bg-black"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <ColorDot color={s.color} />
                       <div className="text-sm font-semibold">{s.name}</div>
                     </div>
-                    <span className="text-xs text-slate-500 dark:text-slate-400">
+                    <span className="text-xs text-slate-500 dark:text-[#a1a1a1]">
                       Saved
                     </span>
                   </div>
@@ -123,17 +123,17 @@ export default function DashboardPage() {
 
           <div className="grid gap-6 lg:grid-cols-3">
             {/* Recent notes */}
-            <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-6 lg:col-span-2">
+            <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-[#1f1f1f] dark:bg-black md:p-6 lg:col-span-2">
               <div className="flex items-center justify-between gap-4">
                 <div>
-                  <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                  <h2 className="text-sm font-semibold text-slate-900 dark:text-white">
                     Recent notes
                   </h2>
-                  <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+                  <p className="mt-1 text-sm text-slate-600 dark:text-[#a1a1a1]">
                     Continue where you left off.
                   </p>
                 </div>
-                <button className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900">
+                <button className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-[#1f1f1f] dark:bg-[#111111] dark:text-white dark:hover:bg-[#0a0a0a]">
                   View all
                 </button>
               </div>
@@ -142,12 +142,12 @@ export default function DashboardPage() {
                 {recentNotes.map((n) => (
                   <div
                     key={n.title}
-                    className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950"
+                    className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-[#1f1f1f] dark:bg-black"
                   >
                     <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                       <div>
                         <div className="text-sm font-semibold">{n.title}</div>
-                        <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                        <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-500 dark:text-[#a1a1a1]">
                           <Badge>{n.subject}</Badge>
                           <span>Updated {n.updatedAt}</span>
                         </div>
@@ -156,7 +156,7 @@ export default function DashboardPage() {
                         Open
                       </button>
                     </div>
-                    <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                    <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-[#a1a1a1]">
                       {n.preview}
                     </p>
                   </div>
@@ -165,11 +165,11 @@ export default function DashboardPage() {
             </section>
 
             {/* AI Tools */}
-            <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-6">
-              <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+            <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-[#1f1f1f] dark:bg-black md:p-6">
+              <h2 className="text-sm font-semibold text-slate-900 dark:text-white">
                 AI Study Tools
               </h2>
-              <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+              <p className="mt-1 text-sm text-slate-600 dark:text-[#a1a1a1]">
                 Powered by Gemini AI.
               </p>
 
@@ -204,8 +204,8 @@ export default function DashboardPage() {
                 </Link>
               </div>
 
-              <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-600 dark:border-slate-800 dark:bg-slate-900/30 dark:text-slate-300">
-                <p className="font-medium text-slate-800 dark:text-slate-100">Real AI integration</p>
+              <div className="mt-4 rounded-xl border border-slate-200 bg-slate-50 p-4 text-xs text-slate-600 dark:border-[#1f1f1f] dark:bg-[#0a0a0a] dark:text-[#a1a1a1]">
+                <p className="font-medium text-slate-800 dark:text-white">Real AI integration</p>
                 <p className="mt-1">
                   Open any subject workspace and select a note or file to run
                   Summarize, Quiz, Flashcards, and more. Or use Study Tools for
@@ -216,17 +216,17 @@ export default function DashboardPage() {
           </div>
 
           {/* Recent files */}
-          <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-6">
+          <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-[#1f1f1f] dark:bg-black md:p-6">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                <h2 className="text-sm font-semibold text-slate-900 dark:text-white">
                   Recent files
                 </h2>
-                <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+                <p className="mt-1 text-sm text-slate-600 dark:text-[#a1a1a1]">
                   Lecture materials you’ve uploaded recently.
                 </p>
               </div>
-              <button className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900">
+              <button className="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-[#1f1f1f] dark:bg-[#111111] dark:text-white dark:hover:bg-[#0a0a0a]">
                 Upload
               </button>
             </div>
@@ -235,19 +235,19 @@ export default function DashboardPage() {
               {recentFiles.map((f) => (
                 <div
                   key={f.filename}
-                  className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950"
+                  className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-[#1f1f1f] dark:bg-black"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
-                      <div className="truncate text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      <div className="truncate text-sm font-semibold text-slate-900 dark:text-white">
                         {f.filename}
                       </div>
-                      <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                      <div className="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-500 dark:text-[#a1a1a1]">
                         <Badge>{f.subject}</Badge>
                         <Badge>{f.type}</Badge>
                       </div>
                     </div>
-                    <div className="rounded-lg bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200 dark:bg-slate-900/30 dark:text-slate-200 dark:ring-slate-800">
+                    <div className="rounded-lg bg-slate-50 px-2 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200 dark:bg-[#111111] dark:text-[#a1a1a1] dark:ring-[#1f1f1f]">
                       {f.addedAt}
                     </div>
                   </div>

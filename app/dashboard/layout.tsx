@@ -4,6 +4,7 @@ import { NotesProvider } from "@/components/notes/notes-store";
 import { SubjectsProvider } from "@/components/subjects/subjects-store";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
+import type { Profile } from "@/lib/auth/client-helpers";
 
 export const dynamic = "force-dynamic";
 
@@ -27,15 +28,9 @@ export default async function DashboardLayout({
 
   const { data: profile } = await supabase
     .from("profiles")
-    .select("full_name, email")
+    .select("*")
     .eq("id", user.id)
     .maybeSingle();
-
-  const displayName =
-    profile?.full_name ||
-    (user.user_metadata?.full_name as string | undefined) ||
-    user.email ||
-    "Student";
 
   const email = profile?.email || user.email || "";
 
@@ -44,8 +39,8 @@ export default async function DashboardLayout({
       <NotesProvider>
         <FilesProvider>
           <DashboardLayoutFrame
-            displayName={displayName}
             email={email}
+            profile={profile}
           >
             {children}
           </DashboardLayoutFrame>

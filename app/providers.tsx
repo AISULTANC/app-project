@@ -1,6 +1,7 @@
 "use client";
 
 import { ThemeProvider } from "next-themes";
+import { DocumentsProvider } from "@/components/documents/documents-store";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -10,7 +11,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       enableSystem
       disableTransitionOnChange
     >
-      {children}
+      <DocumentsProvider>
+        {children}
+      </DocumentsProvider>
     </ThemeProvider>
   );
 }

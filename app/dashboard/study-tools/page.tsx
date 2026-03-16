@@ -90,17 +90,17 @@ export default function StudyToolsPage() {
   return (
     <>
       {/* Input section */}
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-6">
-        <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-[#1f1f1f] dark:bg-black md:p-6">
+        <h2 className="text-sm font-semibold text-slate-900 dark:text-white">
           AI Study Tools
         </h2>
-        <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+        <p className="mt-1 text-sm text-slate-600 dark:text-[#a1a1a1]">
           Enter a topic and pick a tool. AI will generate study materials for you.
         </p>
 
         <div className="mt-4 grid gap-4 md:grid-cols-2">
           <div>
-            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-200">
+            <label className="block text-xs font-semibold text-slate-700 dark:text-white">
               Topic or question
             </label>
             <textarea
@@ -108,17 +108,17 @@ export default function StudyToolsPage() {
               onChange={(e) => setTopic(e.target.value)}
               placeholder="e.g. Derivatives and their applications in Calculus"
               rows={3}
-              className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-indigo-500 dark:focus:ring-indigo-500"
+              className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 dark:border-[#1f1f1f] dark:bg-black dark:text-white dark:focus:border-indigo-500 dark:focus:ring-indigo-500"
             />
           </div>
           <div>
-            <label className="block text-xs font-semibold text-slate-700 dark:text-slate-200">
+            <label className="block text-xs font-semibold text-slate-700 dark:text-white">
               Subject (optional — adds context from your notes)
             </label>
             <select
               value={subjectId}
               onChange={(e) => setSubjectId(e.target.value)}
-              className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-indigo-400 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
+              className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-indigo-400 dark:border-[#1f1f1f] dark:bg-black dark:text-white"
             >
               <option value="">No subject</option>
               {subjects.map((s) => (
@@ -138,7 +138,7 @@ export default function StudyToolsPage() {
       </section>
 
       {/* Tool buttons */}
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-6">
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-[#1f1f1f] dark:bg-black md:p-6">
         <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
           Choose a tool
         </h3>

@@ -40,31 +40,31 @@ export default function FilesPage() {
 
   return (
     <>
-      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-6">
+      <section className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-[#1f1f1f] dark:bg-black md:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+            <h2 className="text-sm font-semibold text-slate-900 dark:text-white">
               All files
             </h2>
-            <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+            <p className="mt-1 text-sm text-slate-600 dark:text-[#a1a1a1]">
               Files across all subjects. Click &quot;AI&quot; to run AI actions on a file.
             </p>
           </div>
           <div className="w-full sm:w-[360px]">
-            <div className="text-xs font-semibold text-slate-700 dark:text-slate-200">
+            <div className="text-xs font-semibold text-slate-700 dark:text-white">
               Search by file name
             </div>
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               placeholder="Search files…"
-              className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-slate-600"
+              className="mt-2 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 dark:border-[#1f1f1f] dark:bg-black dark:text-white dark:focus:border-slate-600"
             />
           </div>
         </div>
 
         {viewModels.length === 0 ? (
-          <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900/30 dark:text-slate-300">
+          <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-sm text-slate-600 dark:border-[#1f1f1f] dark:bg-slate-900/30 dark:text-[#a1a1a1]">
             No files yet. Open a subject workspace and upload a file to start
             organizing your lecture materials.
           </div>
@@ -95,7 +95,7 @@ export default function FilesPage() {
                       className={`rounded-lg border px-3 py-2 text-xs font-semibold transition ${
                         aiFile?.id === f.id
                           ? "border-indigo-400 bg-indigo-50 text-indigo-700 dark:border-indigo-500 dark:bg-indigo-500/10 dark:text-indigo-200"
-                          : "border-slate-200 bg-white text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
+                          : "border-slate-200 bg-white text-slate-900 hover:bg-slate-50 dark:border-[#1f1f1f] dark:bg-black dark:text-white dark:hover:bg-slate-900"
                       }`}
                     >
                       AI

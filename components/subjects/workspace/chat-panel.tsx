@@ -13,7 +13,7 @@ function Bubble({ role, content }: { role: Message["role"]; content: string }) {
           "max-w-[85%] whitespace-pre-wrap rounded-2xl px-3 py-2 text-sm leading-6 shadow-sm",
           isUser
             ? "bg-indigo-600 text-white"
-            : "bg-slate-50 text-slate-800 ring-1 ring-slate-200 dark:bg-slate-900/30 dark:text-slate-100 dark:ring-slate-800",
+            : "bg-slate-50 text-slate-800 ring-1 ring-slate-200 dark:bg-[#111111] dark:text-white dark:ring-[#1f1f1f]",
         ].join(" ")}
       >
         {content}
@@ -73,17 +73,17 @@ export default function SubjectChatPanel({
   }
 
   return (
-    <section className="rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-950">
-      <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4 dark:border-slate-800 md:px-6">
+    <section className="rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-[#1f1f1f] dark:bg-[#111111]">
+      <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4 dark:border-[#1f1f1f] md:px-6">
         <div>
-          <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+          <h2 className="text-sm font-semibold text-slate-900 dark:text-white">
             AI Chat
           </h2>
-          <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+          <p className="mt-1 text-sm text-slate-600 dark:text-[#a1a1a1]">
             Ask questions and keep context within this subject.
           </p>
         </div>
-        <span className="text-xs text-slate-500 dark:text-slate-400">Mock</span>
+        <span className="text-xs text-slate-500 dark:text-[#a1a1a1]">Mock</span>
       </div>
 
       <div className="max-h-[360px] space-y-3 overflow-auto px-4 py-4 md:px-6">
@@ -92,7 +92,7 @@ export default function SubjectChatPanel({
         ))}
       </div>
 
-      <div className="border-t border-slate-200 px-4 py-4 dark:border-slate-800 md:px-6">
+      <div className="border-t border-slate-200 px-4 py-4 dark:border-[#1f1f1f] md:px-6">
         <div className="flex gap-2">
           <input
             value={input}
@@ -101,7 +101,7 @@ export default function SubjectChatPanel({
             onKeyDown={(e) => {
               if (e.key === "Enter") send();
             }}
-            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-slate-600"
+            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 dark:border-[#1f1f1f] dark:bg-[#0a0a0a] dark:text-white dark:focus:border-[#3b82f6]"
           />
           <button
             type="button"

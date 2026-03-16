@@ -15,13 +15,13 @@ export default function NoteCard({
   note: NoteVM;
 }) {
   return (
-    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950">
+    <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-[#1f1f1f] dark:bg-[#111111]">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
-          <div className="truncate text-sm font-semibold text-slate-900 dark:text-slate-100">
+          <div className="truncate text-sm font-semibold text-slate-900 dark:text-white">
             {note.title}
           </div>
-          <div className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+          <div className="mt-1 text-xs text-slate-500 dark:text-[#a1a1a1]">
             Updated {note.updatedAt}
           </div>
         </div>
@@ -32,7 +32,7 @@ export default function NoteCard({
           Open note
         </Link>
       </div>
-      <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+      <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-600 dark:text-[#a1a1a1]">
         {note.preview}
       </p>
     </div>

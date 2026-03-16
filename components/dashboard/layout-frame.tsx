@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 
 import DashboardSidebar from "@/components/dashboard/sidebar";
 import DashboardTopHeader from "@/components/dashboard/top-header";
+import type { Profile } from "@/lib/auth/client-helpers";
 
 function headerForPath(pathname: string) {
   if (pathname === "/dashboard") {
@@ -51,40 +52,42 @@ function headerForPath(pathname: string) {
 
 export default function DashboardLayoutFrame({
   children,
-  displayName,
   email,
+  profile,
 }: {
   children: React.ReactNode;
-  displayName: string;
   email: string;
+  profile?: Profile | null;
 }) {
   const pathname = usePathname() ?? "";
   const reducedMotion = useReducedMotion();
   const header = headerForPath(pathname);
 
+  const displayName = profile?.full_name || profile?.username || email || "Student";
+
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-black dark:text-white">
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-6 px-4 py-6 md:grid-cols-[260px_1fr] md:px-6">
-        <aside className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:sticky md:top-6 md:h-[calc(100vh-3rem)] md:overflow-auto">
+        <aside className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-[#1f1f1f] dark:bg-[#111111] md:sticky md:top-6 md:h-[calc(100vh-3rem)] md:overflow-auto">
           <div className="flex items-center gap-2 px-2 pb-4">
             <div className="grid h-10 w-10 place-items-center rounded-xl bg-slate-900 text-sm font-semibold text-white">
               AI
             </div>
             <div className="leading-tight">
               <div className="text-sm font-semibold">AI Workspace</div>
-              <div className="text-xs text-slate-500 dark:text-slate-400">
+              <div className="text-xs text-slate-500 dark:text-[#a1a1a1]">
                 Student Dashboard
               </div>
             </div>
           </div>
 
-          <DashboardSidebar email={email} />
+          <DashboardSidebar email={email} profile={profile} />
 
-          <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-800 dark:bg-slate-900/30">
-            <div className="text-xs font-semibold text-slate-900 dark:text-slate-100">
+          <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-[#1f1f1f] dark:bg-[#0a0a0a]">
+            <div className="text-xs font-semibold text-slate-900 dark:text-white">
               Quick tip
             </div>
-            <p className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-300">
+            <p className="mt-1 text-xs leading-5 text-slate-600 dark:text-[#a1a1a1]">
               Keep each class in its own subject. AI chat stays focused on the
               current subject context.
             </p>

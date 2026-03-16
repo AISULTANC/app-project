@@ -18,7 +18,7 @@ export type NewSubjectInput = {
 
 function FieldLabel({ children }: { children: React.ReactNode }) {
   return (
-    <div className="text-xs font-semibold text-slate-700 dark:text-slate-200">
+    <div className="text-xs font-semibold text-slate-700 dark:text-white">
       {children}
     </div>
   );
@@ -83,19 +83,19 @@ export default function AddSubjectModal({
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-950"
+        className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-[#1f1f1f] dark:bg-[#111111]"
       >
-        <div className="flex items-start justify-between gap-4 border-b border-slate-200 p-5 dark:border-slate-800">
+        <div className="flex items-start justify-between gap-4 border-b border-slate-200 p-5 dark:border-[#1f1f1f]">
           <div>
             <div className="text-sm font-semibold">Add Subject</div>
-            <div className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+            <div className="mt-1 text-sm text-slate-600 dark:text-[#a1a1a1]">
               Create a workspace for a class and its study materials.
             </div>
           </div>
           <MotionButton
             type="button"
             onClick={onClose}
-            className="rounded-lg px-2 py-1 text-sm text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-900"
+            className="rounded-lg px-2 py-1 text-sm text-slate-600 hover:bg-slate-100 dark:text-white dark:hover:bg-[#0a0a0a]"
             aria-label="Close"
           >
             ✕
@@ -109,7 +109,7 @@ export default function AddSubjectModal({
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Calculus"
-              className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-slate-600"
+              className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 dark:border-[#1f1f1f] dark:bg-[#0a0a0a] dark:text-white dark:focus:border-[#3b82f6]"
             />
           </div>
 
@@ -120,7 +120,7 @@ export default function AddSubjectModal({
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Optional: what are you studying here?"
               rows={4}
-              className="w-full resize-none rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-slate-600"
+              className="w-full resize-none rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 dark:border-[#1f1f1f] dark:bg-[#0a0a0a] dark:text-white dark:focus:border-[#3b82f6]"
             />
           </div>
 
@@ -137,8 +137,8 @@ export default function AddSubjectModal({
                     className={[
                       "flex items-center justify-center gap-2 rounded-xl border px-3 py-2 text-sm font-semibold transition",
                       active
-                        ? "border-indigo-200 bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100 dark:border-indigo-500/30 dark:bg-indigo-500/10 dark:text-indigo-200 dark:ring-indigo-500/20"
-                        : "border-slate-200 bg-white text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900",
+                        ? "border-indigo-200 bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100 dark:border-[#3b82f6]/30 dark:bg-[#3b82f6]/10 dark:text-[#3b82f6] dark:ring-[#3b82f6]/20"
+                        : "border-slate-200 bg-white text-slate-900 hover:bg-slate-50 dark:border-[#1f1f1f] dark:bg-[#0a0a0a] dark:text-white dark:hover:bg-[#111111]",
                     ].join(" ")}
                   >
                     <span className={`h-2.5 w-2.5 rounded-full ${c.dot}`} />
@@ -150,11 +150,11 @@ export default function AddSubjectModal({
           </div>
         </div>
 
-        <div className="flex items-center justify-end gap-2 border-t border-slate-200 p-5 dark:border-slate-800">
+        <div className="flex items-center justify-end gap-2 border-t border-slate-200 p-5 dark:border-[#1f1f1f]">
           <MotionButton
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
+            className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-[#1f1f1f] dark:bg-[#111111] dark:text-white dark:hover:bg-[#0a0a0a]"
           >
             Cancel
           </MotionButton>

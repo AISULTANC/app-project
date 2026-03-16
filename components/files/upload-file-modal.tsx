@@ -60,19 +60,19 @@ export default function UploadFileModal({
         initial="hidden"
         animate="visible"
         exit="exit"
-        className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-950"
+        className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white shadow-xl dark:border-[#1f1f1f] dark:bg-[#111111]"
       >
-        <div className="flex items-start justify-between gap-4 border-b border-slate-200 p-5 dark:border-slate-800">
+        <div className="flex items-start justify-between gap-4 border-b border-slate-200 p-5 dark:border-[#1f1f1f]">
           <div>
             <div className="text-sm font-semibold">Upload File</div>
-            <div className="mt-1 text-sm text-slate-600 dark:text-slate-300">
-              Choose a file — we’ll store metadata only (frontend MVP).
+            <div className="mt-1 text-sm text-slate-600 dark:text-[#a1a1a1]">
+              Choose a file — we'll store metadata only (frontend MVP).
             </div>
           </div>
           <MotionButton
             type="button"
             onClick={onClose}
-            className="rounded-lg px-2 py-1 text-sm text-slate-600 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-900"
+            className="rounded-lg px-2 py-1 text-sm text-slate-600 hover:bg-slate-100 dark:text-white dark:hover:bg-[#0a0a0a]"
             aria-label="Close"
           >
             ✕
@@ -80,7 +80,7 @@ export default function UploadFileModal({
         </div>
 
         <div className="space-y-4 p-5">
-          <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-5 dark:border-slate-800 dark:bg-slate-900/30">
+          <div className="rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-5 dark:border-[#1f1f1f] dark:bg-[#0a0a0a]">
             <input
               ref={inputRef}
               type="file"
@@ -92,20 +92,20 @@ export default function UploadFileModal({
                   f.text().then((t) => setExtractedText(t)).catch(() => {});
                 }
               }}
-              className="block w-full text-sm text-slate-700 file:mr-4 file:rounded-xl file:border-0 file:bg-white file:px-4 file:py-2 file:text-sm file:font-semibold file:text-slate-900 hover:file:bg-slate-100 dark:text-slate-200 dark:file:bg-slate-950 dark:file:text-slate-100 dark:hover:file:bg-slate-900"
+              className="block w-full text-sm text-slate-700 file:mr-4 file:rounded-xl file:border-0 file:bg-white file:px-4 file:py-2 file:text-sm file:font-semibold file:text-slate-900 hover:file:bg-slate-100 dark:text-white dark:file:bg-[#111111] dark:file:text-white dark:hover:file:bg-[#0a0a0a]"
             />
-            <div className="mt-3 text-xs text-slate-600 dark:text-slate-300">
+            <div className="mt-3 text-xs text-slate-600 dark:text-[#a1a1a1]">
               Supported types later: PDF, DOCX, TXT. For now we accept any file
               and record name/type/size.
             </div>
           </div>
 
           {selected ? (
-            <div className="rounded-2xl border border-slate-200 bg-white p-4 text-sm dark:border-slate-800 dark:bg-slate-950">
-              <div className="font-semibold text-slate-900 dark:text-slate-100">
+            <div className="rounded-2xl border border-slate-200 bg-white p-4 text-sm dark:border-[#1f1f1f] dark:bg-[#111111]">
+              <div className="font-semibold text-slate-900 dark:text-white">
                 Selected
               </div>
-              <div className="mt-2 space-y-1 text-slate-600 dark:text-slate-300">
+              <div className="mt-2 space-y-1 text-slate-600 dark:text-[#a1a1a1]">
                 <div className="truncate">{selected.name}</div>
                 <div className="text-xs">
                   {selected.type || "unknown/type"} • {selected.size} bytes
@@ -115,11 +115,11 @@ export default function UploadFileModal({
           ) : null}
         </div>
 
-        <div className="flex items-center justify-end gap-2 border-t border-slate-200 p-5 dark:border-slate-800">
+        <div className="flex items-center justify-end gap-2 border-t border-slate-200 p-5 dark:border-[#1f1f1f]">
           <MotionButton
             type="button"
             onClick={onClose}
-            className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
+            className="rounded-xl border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-[#1f1f1f] dark:bg-[#111111] dark:text-white dark:hover:bg-[#0a0a0a]"
           >
             Cancel
           </MotionButton>
@@ -131,7 +131,7 @@ export default function UploadFileModal({
               onSelectFile(selected, extractedText);
               onClose();
             }}
-            className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
+            className="rounded-xl bg-slate-900 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-black dark:hover:bg-slate-100"
           >
             Upload
           </MotionButton>

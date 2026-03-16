@@ -20,7 +20,7 @@ function Bubble({ role, content }: { role: "user" | "assistant"; content: string
           "max-w-[85%] whitespace-pre-wrap rounded-2xl px-4 py-3 text-sm leading-7 shadow-sm",
           isUser
             ? "bg-indigo-600 text-white"
-            : "bg-slate-50 text-slate-800 ring-1 ring-slate-200 dark:bg-slate-900/30 dark:text-slate-100 dark:ring-slate-800",
+            : "bg-slate-50 text-slate-800 ring-1 ring-slate-200 dark:bg-[#111111] dark:text-white dark:ring-[#1f1f1f]",
         ].join(" ")}
       >
         {content}
@@ -34,7 +34,7 @@ function TypingIndicator() {
 
   return (
     <div className="flex justify-start">
-      <div className="flex items-center gap-1 rounded-2xl bg-slate-50 px-4 py-3 ring-1 ring-slate-200 dark:bg-slate-900/30 dark:ring-slate-800">
+      <div className="flex items-center gap-1 rounded-2xl bg-slate-50 px-4 py-3 ring-1 ring-slate-200 dark:bg-[#111111] dark:ring-[#1f1f1f]">
         {[0, 1, 2].map((i) => (
           <motion.span
             key={i}
@@ -177,14 +177,14 @@ export default function AIChatPanel({
       : null;
 
   return (
-    <section className="flex flex-col rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-950">
+    <section className="flex flex-col rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-[#1f1f1f] dark:bg-[#111111]">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4 dark:border-slate-800 md:px-6">
+      <div className="flex items-center justify-between border-b border-slate-200 px-4 py-4 dark:border-[#1f1f1f] md:px-6">
         <div>
-          <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+          <h2 className="text-sm font-semibold text-slate-900 dark:text-white">
             AI Chat — {subjectName}
           </h2>
-          <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+          <p className="mt-1 text-xs text-slate-500 dark:text-[#a1a1a1]">
             Ask questions about {subjectName}. AI remembers the conversation.
           </p>
         </div>
@@ -195,8 +195,8 @@ export default function AIChatPanel({
 
       {/* Context badge */}
       {contextLabel && (
-        <div className="border-b border-slate-200 px-4 py-2 dark:border-slate-800">
-          <span className="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-700 ring-1 ring-indigo-100 dark:bg-indigo-500/10 dark:text-indigo-200 dark:ring-indigo-500/20">
+        <div className="border-b border-slate-200 px-4 py-2 dark:border-[#1f1f1f]">
+          <span className="inline-flex items-center rounded-full bg-indigo-50 px-2.5 py-1 text-xs font-medium text-indigo-700 ring-1 ring-indigo-100 dark:bg-[#3b82f6]/10 dark:text-[#3b82f6] dark:ring-[#3b82f6]/20">
             Context: {contextLabel}
           </span>
         </div>
@@ -208,7 +208,7 @@ export default function AIChatPanel({
         className="max-h-[420px] min-h-[200px] space-y-3 overflow-auto px-4 py-4 md:px-6"
       >
         {messages.length === 0 && !loading && (
-          <div className="flex h-32 items-center justify-center text-sm text-slate-400 dark:text-slate-500">
+          <div className="flex h-32 items-center justify-center text-sm text-slate-400 dark:text-[#a1a1a1]">
             Start a conversation about {subjectName}…
           </div>
         )}
@@ -219,7 +219,7 @@ export default function AIChatPanel({
       </div>
 
       {/* Input */}
-      <div className="border-t border-slate-200 px-4 py-4 dark:border-slate-800 md:px-6">
+      <div className="border-t border-slate-200 px-4 py-4 dark:border-[#1f1f1f] md:px-6">
         <div className="flex gap-2">
           <input
             value={input}
@@ -232,7 +232,7 @@ export default function AIChatPanel({
               }
             }}
             disabled={loading}
-            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 disabled:opacity-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-indigo-500 dark:focus:ring-indigo-500"
+            className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-900 outline-none focus:border-indigo-400 focus:ring-1 focus:ring-indigo-400 disabled:opacity-50 dark:border-[#1f1f1f] dark:bg-[#0a0a0a] dark:text-white dark:focus:border-[#3b82f6] dark:focus:ring-[#3b82f6]"
           />
           <MotionButton
             type="button"

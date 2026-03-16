@@ -51,10 +51,10 @@ export default function SubjectsPage() {
   return (
     <>
       {/* Top action bar */}
-      <FadeInSection className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-6">
+      <FadeInSection className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-[#1f1f1f] dark:bg-black md:p-6">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex-1">
-            <div className="text-xs font-semibold text-slate-700 dark:text-slate-200">
+            <div className="text-xs font-semibold text-slate-700 dark:text-white">
               Search
             </div>
             <div className="mt-2">
@@ -62,7 +62,7 @@ export default function SubjectsPage() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search subjects…"
-                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:focus:border-slate-600"
+                className="w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 outline-none focus:border-slate-400 dark:border-[#1f1f1f] dark:bg-black dark:text-white dark:focus:border-[#3b82f6]"
               />
             </div>
           </div>
@@ -81,15 +81,15 @@ export default function SubjectsPage() {
 
       {/* Subjects grid */}
       <FadeInSection
-        className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950 md:p-6"
+        className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-[#1f1f1f] dark:bg-black md:p-6"
         delay={0.05}
       >
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+            <h2 className="text-sm font-semibold text-slate-900 dark:text-white">
               Your subjects
             </h2>
-            <p className="mt-1 text-sm text-slate-600 dark:text-slate-300">
+            <p className="mt-1 text-sm text-slate-600 dark:text-[#a1a1a1]">
               {filtered.length} subject{filtered.length === 1 ? "" : "s"} shown
             </p>
           </div>
@@ -107,7 +107,7 @@ export default function SubjectsPage() {
           <motion.div
             initial={reducedMotion ? false : { opacity: 0, y: 6 }}
             animate={reducedMotion ? undefined : { opacity: 1, y: 0 }}
-            className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-sm text-slate-600 dark:border-slate-800 dark:bg-slate-900/30 dark:text-slate-300"
+            className="mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-6 text-sm text-slate-600 dark:border-[#1f1f1f] dark:bg-[#0a0a0a] dark:text-[#a1a1a1]"
           >
             No subjects match your search. Try a different term or create a new
             subject.

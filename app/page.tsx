@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
-      <div className="absolute inset-x-0 top-0 -z-10 h-[520px] bg-gradient-to-b from-indigo-50 via-white to-white dark:from-slate-900/40 dark:via-slate-950 dark:to-slate-950" />
+    <div className="min-h-screen bg-white text-slate-900 dark:bg-black dark:text-white">
+      <div className="absolute inset-x-0 top-0 -z-10 h-[520px] bg-gradient-to-b from-indigo-50 via-white to-white dark:from-[#3b82f6]/5 dark:via-black dark:to-black" />
 
       <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
         <div className="flex items-center gap-2">
@@ -12,20 +12,20 @@ export default function Home() {
           </div>
           <div className="leading-tight">
             <div className="text-sm font-semibold">AI Workspace</div>
-            <div className="text-xs text-slate-500 dark:text-slate-400">
+            <div className="text-xs text-slate-500 dark:text-[#a1a1a1]">
               for Students
             </div>
           </div>
         </div>
 
-        <nav className="hidden items-center gap-6 text-sm text-slate-600 dark:text-slate-300 md:flex">
-          <a href="#features" className="hover:text-slate-900 dark:hover:text-slate-100">
+        <nav className="hidden items-center gap-6 text-sm text-slate-600 dark:text-[#a1a1a1] md:flex">
+          <a href="#features" className="hover:text-slate-900 dark:hover:text-white">
             Features
           </a>
-          <a href="#how" className="hover:text-slate-900 dark:hover:text-slate-100">
+          <a href="#how" className="hover:text-slate-900 dark:hover:text-white">
             How it works
           </a>
-          <a href="#cta" className="hover:text-slate-900 dark:hover:text-slate-100">
+          <a href="#cta" className="hover:text-slate-900 dark:hover:text-white">
             Get started
           </a>
         </nav>
@@ -33,7 +33,7 @@ export default function Home() {
         <div className="flex items-center gap-2">
           <Link
             href="/login"
-            className="rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-900"
+            className="rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 dark:text-white dark:hover:bg-[#111111]"
           >
             Log in
           </Link>
@@ -49,14 +49,14 @@ export default function Home() {
       <main>
         <section className="mx-auto grid w-full max-w-6xl items-center gap-10 px-6 pb-16 pt-10 md:grid-cols-2 md:pb-24 md:pt-16">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm dark:border-slate-800 dark:bg-slate-950 dark:text-slate-200">
+            <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 text-xs font-medium text-slate-700 shadow-sm dark:border-[#1f1f1f] dark:bg-[#111111] dark:text-white">
               <span className="h-2 w-2 rounded-full bg-emerald-500" />
               Built for study flow, not busywork
             </div>
-            <h1 className="mt-5 text-4xl font-semibold tracking-tight text-slate-900 md:text-5xl">
+            <h1 className="mt-5 text-4xl font-semibold tracking-tight text-slate-900 dark:text-white md:text-5xl">
               Your subjects, notes, and lecture files — powered by AI.
             </h1>
-            <p className="mt-4 max-w-xl text-base leading-7 text-slate-600 dark:text-slate-300">
+            <p className="mt-4 max-w-xl text-base leading-7 text-slate-600 dark:text-[#a1a1a1]">
               Organize classes by subject, upload materials, and instantly get
               summaries, simple explanations, key terms, and quiz questions.
               Keep an AI chat per subject so your context stays focused.
@@ -71,51 +71,51 @@ export default function Home() {
               </Link>
               <Link
                 href="/dashboard"
-                className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100 dark:hover:bg-slate-900"
+                className="inline-flex items-center justify-center rounded-lg border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-900 hover:bg-slate-50 dark:border-[#1f1f1f] dark:bg-[#111111] dark:text-white dark:hover:bg-[#0a0a0a]"
               >
                 Go to dashboard
               </Link>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-3 text-xs text-slate-500 dark:text-slate-400">
-              <span className="rounded-full bg-white/60 px-3 py-1 ring-1 ring-slate-200 dark:bg-slate-900/40 dark:ring-slate-800">
+            <div className="mt-6 flex flex-wrap gap-3 text-xs text-slate-500 dark:text-[#a1a1a1]">
+              <span className="rounded-full bg-white/60 px-3 py-1 ring-1 ring-slate-200 dark:bg-[#111111]/60 dark:ring-[#1f1f1f]">
                 Subjects
               </span>
-              <span className="rounded-full bg-white/60 px-3 py-1 ring-1 ring-slate-200 dark:bg-slate-900/40 dark:ring-slate-800">
+              <span className="rounded-full bg-white/60 px-3 py-1 ring-1 ring-slate-200 dark:bg-[#111111]/60 dark:ring-[#1f1f1f]">
                 Notes
               </span>
-              <span className="rounded-full bg-white/60 px-3 py-1 ring-1 ring-slate-200 dark:bg-slate-900/40 dark:ring-slate-800">
+              <span className="rounded-full bg-white/60 px-3 py-1 ring-1 ring-slate-200 dark:bg-[#111111]/60 dark:ring-[#1f1f1f]">
                 PDF/DOCX/TXT uploads
               </span>
-              <span className="rounded-full bg-white/60 px-3 py-1 ring-1 ring-slate-200 dark:bg-slate-900/40 dark:ring-slate-800">
+              <span className="rounded-full bg-white/60 px-3 py-1 ring-1 ring-slate-200 dark:bg-[#111111]/60 dark:ring-[#1f1f1f]">
                 Summaries & quizzes
               </span>
             </div>
           </div>
 
           <div className="relative">
-            <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-tr from-indigo-100 via-white to-emerald-100 blur-2xl dark:from-indigo-500/10 dark:via-slate-950 dark:to-emerald-500/10" />
-            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg dark:border-slate-800 dark:bg-slate-950">
-              <div className="flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-800 dark:bg-slate-900/40">
+            <div className="absolute -inset-4 -z-10 rounded-3xl bg-gradient-to-tr from-indigo-100 via-white to-emerald-100 blur-2xl dark:from-[#3b82f6]/10 dark:via-black dark:to-emerald-500/10" />
+            <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg dark:border-[#1f1f1f] dark:bg-[#111111]">
+              <div className="flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-4 py-3 dark:border-[#1f1f1f] dark:bg-[#0a0a0a]">
                 <div className="h-2.5 w-2.5 rounded-full bg-rose-400" />
                 <div className="h-2.5 w-2.5 rounded-full bg-amber-400" />
                 <div className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
-                <div className="ml-3 text-xs font-medium text-slate-600 dark:text-slate-300">
+                <div className="ml-3 text-xs font-medium text-slate-600 dark:text-[#a1a1a1]">
                   AI Workspace — Calculus
                 </div>
               </div>
               <div className="grid gap-4 p-5">
                 <div className="grid gap-2">
-                  <div className="text-xs font-semibold text-slate-900 dark:text-slate-100">
+                  <div className="text-xs font-semibold text-slate-900 dark:text-white">
                     Lecture upload
                   </div>
-                  <div className="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-4 text-xs text-slate-600 dark:border-slate-800 dark:bg-slate-900/40 dark:text-slate-300">
+                  <div className="rounded-xl border border-dashed border-slate-200 bg-slate-50 p-4 text-xs text-slate-600 dark:border-[#1f1f1f] dark:bg-[#0a0a0a] dark:text-[#a1a1a1]">
                     Drop PDF/DOCX/TXT or browse files
                   </div>
                 </div>
 
                 <div className="grid gap-2">
-                  <div className="text-xs font-semibold text-slate-900 dark:text-slate-100">
+                  <div className="text-xs font-semibold text-slate-900 dark:text-white">
                     AI actions
                   </div>
                   <div className="flex flex-wrap gap-2">
@@ -123,7 +123,7 @@ export default function Home() {
                       (label) => (
                         <div
                           key={label}
-                          className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 ring-1 ring-indigo-100 dark:bg-indigo-500/10 dark:text-indigo-200 dark:ring-indigo-500/20"
+                          className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 ring-1 ring-indigo-100 dark:bg-[#3b82f6]/10 dark:text-[#3b82f6] dark:ring-[#3b82f6]/20"
                         >
                           {label}
                         </div>
@@ -132,15 +132,15 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="rounded-xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-slate-950">
-                  <div className="text-xs font-semibold text-slate-900 dark:text-slate-100">
+                <div className="rounded-xl border border-slate-200 bg-white p-4 dark:border-[#1f1f1f] dark:bg-[#0a0a0a]">
+                  <div className="text-xs font-semibold text-slate-900 dark:text-white">
                     Subject chat
                   </div>
                   <div className="mt-2 space-y-2 text-xs">
-                    <div className="rounded-lg bg-slate-50 p-2 text-slate-700 dark:bg-slate-900/40 dark:text-slate-200">
-                      Explain derivatives like I’m new to calculus.
+                    <div className="rounded-lg bg-slate-50 p-2 text-slate-700 dark:bg-[#111111] dark:text-[#a1a1a1]">
+                      Explain derivatives like I'm new to calculus.
                     </div>
-                    <div className="rounded-lg bg-indigo-50 p-2 text-indigo-800 dark:bg-indigo-500/10 dark:text-indigo-200">
+                    <div className="rounded-lg bg-indigo-50 p-2 text-indigo-800 dark:bg-[#3b82f6]/10 dark:text-[#3b82f6]">
                       A derivative tells you how fast something changes. Think
                       of it as the slope of a curve at one point…
                     </div>
@@ -156,7 +156,7 @@ export default function Home() {
             <h2 className="text-2xl font-semibold tracking-tight">
               Everything you need to study faster
             </h2>
-            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+            <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-[#a1a1a1]">
               A focused workspace per class: materials in, understanding out.
             </p>
           </div>
@@ -182,12 +182,12 @@ export default function Home() {
             ].map((f) => (
               <div
                 key={f.title}
-                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-950"
+                className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm dark:border-[#1f1f1f] dark:bg-[#111111]"
               >
-                <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                <div className="text-sm font-semibold text-slate-900 dark:text-white">
                   {f.title}
                 </div>
-                <div className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                <div className="mt-2 text-sm leading-6 text-slate-600 dark:text-[#a1a1a1]">
                   {f.desc}
                 </div>
               </div>
@@ -196,8 +196,8 @@ export default function Home() {
         </section>
 
         <section id="how" className="mx-auto w-full max-w-6xl px-6 pb-16">
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 md:p-10 dark:border-slate-800 dark:bg-slate-900/30">
-            <h2 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 md:p-10 dark:border-[#1f1f1f] dark:bg-[#0a0a0a]">
+            <h2 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-white">
               How it works
             </h2>
             <div className="mt-6 grid gap-6 md:grid-cols-3">
@@ -218,16 +218,16 @@ export default function Home() {
                   desc: "Summaries, simple explanations, key terms, quizzes, and chat.",
                 },
               ].map((s) => (
-                <div key={s.step} className="rounded-2xl bg-white p-6 shadow-sm dark:bg-slate-950 dark:ring-1 dark:ring-slate-800">
+                <div key={s.step} className="rounded-2xl bg-white p-6 shadow-sm dark:bg-[#111111] dark:ring-1 dark:ring-[#1f1f1f]">
                   <div className="flex items-center gap-3">
                     <div className="grid h-9 w-9 place-items-center rounded-xl bg-indigo-600 text-sm font-semibold text-white">
                       {s.step}
                     </div>
-                    <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                    <div className="text-sm font-semibold text-slate-900 dark:text-white">
                       {s.title}
                     </div>
                   </div>
-                  <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-slate-300">
+                  <p className="mt-3 text-sm leading-6 text-slate-600 dark:text-[#a1a1a1]">
                     {s.desc}
                   </p>
                 </div>
@@ -267,14 +267,14 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className="border-t border-slate-200 dark:border-slate-800">
+      <footer className="border-t border-slate-200 dark:border-[#1f1f1f]">
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-2 px-6 py-8 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
           <div>© {new Date().getFullYear()} AI Workspace for Students</div>
           <div className="flex gap-4">
-            <a href="#features" className="hover:text-slate-700">
+            <a href="#features" className="hover:text-slate-700 dark:hover:text-white">
               Features
             </a>
-            <a href="#cta" className="hover:text-slate-700">
+            <a href="#cta" className="hover:text-slate-700 dark:hover:text-white">
               Get started
             </a>
           </div>

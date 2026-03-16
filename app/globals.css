@@ -2,13 +2,15 @@
 @config "../tailwind.config.ts";
 
 :root {
-  --background: #f8fafc;
+  --background: #ffffff;
+  --background-secondary: #f8fafc;
   --foreground: #0f172a;
 }
 
 .dark {
-  --background: #020617;
-  --foreground: #f1f5f9;
+  --background: #000000;
+  --background-secondary: #0a0a0a;
+  --foreground: #ffffff;
 }
 
 @theme inline {
